@@ -27,6 +27,9 @@ def main():
     else:
         cp.transfer_files(df)
 
+    if cf.MOVE_FILES:
+        cp.remove_empty_folders(cf.SRC_DIR)
+
     cp.save_df(df)
 
 if __name__ == '__main__':
