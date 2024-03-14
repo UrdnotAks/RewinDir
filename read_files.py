@@ -3,9 +3,12 @@ from datetime import datetime
 import warnings
 import glob
 import os
-from pathlib import Path
 
 import pandas as pd
+from pillow_heif import register_heif_opener, register_avif_opener
+
+register_heif_opener()
+register_avif_opener()
 
 import config as cf
 
