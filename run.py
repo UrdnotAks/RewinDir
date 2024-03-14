@@ -7,8 +7,9 @@ def set_config(args):
     '''
     sets the config variables
     '''
-    cf.SRC_DIR = args.src
-    cf.DST_DIR = args.dst if args.dst is not None else args.src
+    cf.SRC_DIR = args.src if args.src.endswith('/') else args.src + '/'
+    cf.DST_DIR = args.dst if args.dst is not None else cf.SRC_DIR
+    cf.DST_DIR = cf.DST_DIR if cf.DST_DIR.endswith('/') else cf.DST_DIR + '/'
     cf.INTERACTIVE = args.interactive
     cf.MOVE_FILES = args.move_files
     cf.HANDLE_UNKNOWN_FILES = args.handle_unknown
@@ -20,7 +21,13 @@ def set_config(args):
 def main():
     df = rf.generate_file_path_df(cf.SRC_DIR)
     df = rf.add_new_path_to_df(df, cf.DST_DIR)
-    cp.transfer_files(df)
+
+    if cf.INTERACTIVE:
+        cp.interactive_file_transfer(df)
+    else:
+        cp.transfer_files(df)
+
+    cp.save_df(df)
 
 if __name__ == '__main__':
     args = parse_cmd_line_arguments()

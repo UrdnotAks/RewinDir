@@ -117,5 +117,5 @@ def add_new_path_to_df(df, dst_dir):
     for row in df.itertuples():
         full_path = dst_dir+'{}/{}/{}/'.format(row.year, row.month, row.day)
         df.loc[row.Index, 'new_path'] = full_path
-
+    df['new_path'] = df['new_path'] + df['filename'].str.rsplit('/', n=1).str[-1]
     return df
