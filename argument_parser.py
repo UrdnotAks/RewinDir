@@ -15,7 +15,7 @@ def parse_cmd_line_arguments():
     parser.add_argument('-d', '--dst', 
                         action='store', 
                         help='Destination directory to store images.\
-                              Default directory: \'ymd_photos/\' ')
+                              Default directory is same as source directory.')
     
     parser.add_argument('-i', '--interactive',
                         action='store_true',
@@ -34,7 +34,8 @@ def parse_cmd_line_arguments():
     parser.add_argument('-n', '--num_files',
                         action='store',
                         default=math.inf,
-                        help='Maximum number of files to process.')
+                        help='Maximum number of files to process.', 
+                        type=int)
 
     parser.add_argument('-w', '--treat_pil_warnings_as_error',
                         action='store_true',

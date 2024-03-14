@@ -15,7 +15,7 @@ def toggle_pil_decompression_bomb_warning(warning_level):
     '''
     warnings.simplefilter(warning_level, Image.DecompressionBombWarning)
 
-def list_files(src_dir=cf.SRC_DIR):
+def list_files(src_dir):
     '''
     Lists the files in the specified directory recursively
     '''
@@ -35,7 +35,7 @@ def get_file_attrib(attrib):
     return attrib_dict[attrib]
 
 
-def generate_file_path_df(src_dir=cf.SRC_DIR, use_creation_date=False):
+def generate_file_path_df(src_dir, use_creation_date=False):
     '''
     Opens files to access EXIF data of images, if unable to access the basedir  
     '''
@@ -93,6 +93,8 @@ def generate_file_path_df(src_dir=cf.SRC_DIR, use_creation_date=False):
             print('Encountered Decompression Error while accessing {}'.format(file))
             print('Skipping the file as it could be malicious')
             file = next(files, '')
+    
+    df = split_date(df)
     return df
 
 
@@ -108,11 +110,11 @@ def split_date(df):
     return df
 
 
-def add_new_path_to_df(df, dst_dir=cf.DST_DIR):
+def add_new_path_to_df(df, dst_dir):
     '''
     adds new path where the file will be copied to the dataframe
     '''
-    for row in df[:50].itertuples():
+    for row in df.itertuples():
         full_path = dst_dir+'{}/{}/{}/'.format(row.year, row.month, row.day)
         df.loc[row.Index, 'new_path'] = full_path
 

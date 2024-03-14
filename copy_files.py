@@ -5,7 +5,7 @@ import shutil
 import config as cf
 
 
-def create_directory(dst_dir=cf.DST_DIR):
+def create_directory(dst_dir):
     '''
     Creates nested directory as Year/Month/Day 
     '''
