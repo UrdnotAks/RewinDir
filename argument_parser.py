@@ -1,4 +1,5 @@
 import argparse
+import math
 
 def parse_cmd_line_arguments():
     '''
@@ -29,6 +30,17 @@ def parse_cmd_line_arguments():
                         help='If set, unknown file types are processed. This might result \
                               in processing non-image files. To specify custom files, \
                               use --extra_file_types argument.')
+
+    parser.add_argument('-n', '--num_files',
+                        action='store',
+                        default=math.inf,
+                        help='Maximum number of files to process.')
+
+    parser.add_argument('-w', '--treat_pil_warnings_as_error',
+                        action='store_true',
+                        help='Treat PIL Decompression Bomb Warnings as Errors. \
+                              Use when you don\'t know about the files present in \
+                              source directory.')
     
     parser.add_argument('-e', '--extra_file_types', 
                         action='store',
