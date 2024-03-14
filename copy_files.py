@@ -5,24 +5,24 @@ import shutil
 import config as cf
 
 
-def create_directory(dest_dir):
+def create_directory(dst_dir=cf.DST_DIR):
     '''
     Creates nested directory as Year/Month/Day 
     '''
-    Path(dest_dir).mkdir(parents=True, exist_ok=True)
+    Path(dst_dir).mkdir(parents=True, exist_ok=True)
 
 
-def perform_transfer(src_dir, dest_dir):
+def perform_transfer(src_dir, dst_dir):
     '''
     copies / moves a file from source directory to destination directory
     '''
     if cf.MOVE_FILES:
-        shutil.move(src_dir, dest_dir)
+        shutil.move(src_dir, dst_dir)
     else:
-        shutil.copy2(src_dir, dest_dir)
+        shutil.copy2(src_dir, dst_dir)
 
 
-def transfer_files(dest_dir, df):
+def transfer_files(df):
     '''
     Transfers files from source dir to destination dir
     Internally calls perform_transfer for each file
