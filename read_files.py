@@ -44,6 +44,8 @@ def generate_file_path_df(src_dir=cf.SRC_DIR, use_creation_date=False):
     files = list_files(src_dir)
     file = next(files, '')
     while file:
+        if len(df) > cf.NUM_FILES:
+            break
         try:
             img = Image.open(file)
             img_exif = img.getexif()
