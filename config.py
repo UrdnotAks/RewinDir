@@ -12,3 +12,4 @@ ADDITIONAL_FILE_TYPES_TO_PROCESS = ('.heic', '.3gp', '.mp4', '.mov', '.webm',
 
 TREAT_DECOMPRESSION_BOMB_WARNING_AS_ERROR = False
 NUM_FILES = math.inf
+RECURSIVE = True

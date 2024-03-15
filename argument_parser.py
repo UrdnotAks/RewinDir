@@ -16,6 +16,11 @@ def parse_cmd_line_arguments():
                         action='store', 
                         help='Destination directory to store images.\
                               Default directory is same as source directory.')
+
+    parser.add_argument('--no-recursive',
+                        action='store_true',
+                        help='If set, the program looks for images only in the \
+                              source directory and ignores all subdirectories.')
     
     parser.add_argument('-i', '--interactive',
                         action='store_true',
