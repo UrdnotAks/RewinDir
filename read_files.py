@@ -23,8 +23,8 @@ def list_files(src_dir):
     Lists the files in the specified directory recursively
     '''
 
-    return iter([src_dir+i for i in glob.glob('**', root_dir=src_dir, recursive=True) 
-            if os.path.isfile(src_dir+i)])
+    return iter([src_dir+i for i in glob.glob('**', root_dir=src_dir, recursive=cf.RECURSIVE) 
+                                    if os.path.isfile(src_dir+i)])
 
 
 def get_file_attrib(attrib):
