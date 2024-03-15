@@ -1,25 +1,10 @@
-from shutil import move
 import copy_files as cp
 import pandas as pd
 import os
 
-import argparse
+import config as cf
 
-def parse_cmd_line_arguments():
-    '''
-    parses commandline arguments
-    '''
-    parser = argparse.ArgumentParser()
-    
-    parser.add_argument('-s', '--src', 
-                        action='store', 
-                        required=True, 
-                        help='Source csv file that has the file path of images.')
-
-    args = parser.parse_args()
-    return args
-
-def restore_files(df):
+def _restore_files(df):
     '''
     restore files to its previous location if files paths were saved while
     transfering files
@@ -45,11 +30,13 @@ def read_df_from_file(src):
         return None
 
 
-if __name__ == '__main__':
-    args = parse_cmd_line_arguments()
-    df = read_df_from_file(args.src)
+def restore():
+    '''
+    Point of entry for restoring files operation
+    '''
+    df = read_df_from_file(cf.SRC_DIR)
     if df is not None:
-        restore_files(df)
-        cp.remove_empty_folders('/'.join(args.src.split('/')[:-1]))
+        _restore_files(df)
+        cp.remove_empty_folders('/'.join(cf.SRC_DIR.split('/')[:-1]))
     else:
         print('Restoration Failed. File specified is not valid.')
