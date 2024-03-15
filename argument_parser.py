@@ -6,11 +6,17 @@ def parse_cmd_line_arguments():
     parses the cmd line arguments
     '''
     parser = argparse.ArgumentParser()
+
+    parser.add_argument('-r', '--restore',
+                        action='store_true',
+                        help='If set, src argument is considered Source csv file \
+                              that has the file path of images.')
     
     parser.add_argument('-s', '--src', 
                         action='store', 
                         required=True, 
-                        help='Source directory to look for images.')
+                        help='Source directory to look for images. If -r option is used,\
+                              Source csv file that has the file path of images ')
 
     parser.add_argument('-d', '--dst', 
                         action='store', 

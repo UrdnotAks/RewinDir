@@ -1,7 +1,7 @@
 import math
 
 SRC_DIR = None
-DST_DIR = './ymd_photos/'
+DST_DIR = ''
 INTERACTIVE = False
 MOVE_FILES = False
 HANDLE_UNKNOWN_FILES = True
