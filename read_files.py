@@ -1,5 +1,6 @@
 from PIL import Image, UnidentifiedImageError
 from datetime import datetime
+from dateutil import parser as date_parser
 import warnings
 import glob
 import os
@@ -59,8 +60,7 @@ def generate_file_path_df(src_dir, use_creation_date=False):
 
             if img_exif is not None and 306 in img_exif.keys():                 # 306 - EXIF TAG for DateTime
                 df.loc[len(df)] = [file, 
-                                   datetime.strptime(img_exif[306], 
-                                                      '%Y:%m:%d %H:%M:%S'), 
+                                   date_parser.parse(img_exif[306]), 
                                    'exif']
             else:
                 df.loc[len(df)] = [file, 
