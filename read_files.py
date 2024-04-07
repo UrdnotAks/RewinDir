@@ -43,6 +43,11 @@ def generate_file_path_df(src_dir, use_creation_date=False):
     '''
     Opens files to access EXIF data of images, if unable to access the basedir  
     '''
+
+    attrib_func = get_file_attrib('creation_date') \
+                if use_creation_date \
+                else get_file_attrib('modified_date')
+
     df = pd.DataFrame(columns=['filename', 'timestamp', 'source'])
 
     files = list_files(src_dir)
@@ -54,14 +59,16 @@ def generate_file_path_df(src_dir, use_creation_date=False):
             img = Image.open(file)
             img_exif = img.getexif()
 
-            attrib_func = get_file_attrib('creation_date') \
-                          if use_creation_date \
-                          else get_file_attrib('modified_date')
-
             if img_exif is not None and 306 in img_exif.keys():                 # 306 - EXIF TAG for DateTime
-                df.loc[len(df)] = [file, 
-                                   date_parser.parse(img_exif[306]), 
-                                   'exif']
+                try:
+                    df.loc[len(df)] = [file, 
+                                    datetime.strptime(img_exif[306], 
+                                                        '%Y:%m:%d %H:%M:%S'),  
+                                    'exif']
+                except ValueError:
+                    df.loc[len(df)] = [file,
+                                       date_parser.parse(img_exif[306]), 
+                                       'exif']
             else:
                 df.loc[len(df)] = [file, 
                                    datetime.fromtimestamp(attrib_func(file)), 
