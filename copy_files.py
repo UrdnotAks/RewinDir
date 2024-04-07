@@ -1,7 +1,7 @@
 from pathlib import Path
 import os
 import shutil
-
+from datascroller import scroll
 import config as cf
 
 
@@ -42,7 +42,7 @@ def interactive_file_transfer(df):
     interactively transfers files. gets a confirmation from user about the
     destination paths of files before proceeding with the transfer.
     '''
-    print(df[['filename', 'new_path']].to_markdown())
+    scroll(df[['filename', 'new_path']])
     inp = input('Do you want to proceed with transfering files to the new path?(Y or N) ')
     if inp != 'y' and inp != 'Y':
         return
