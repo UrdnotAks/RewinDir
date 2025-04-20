@@ -8,10 +8,10 @@ import os
 import pandas as pd
 from pillow_heif import register_heif_opener, register_avif_opener
 
+import config as cf
+
 register_heif_opener()
 register_avif_opener()
-
-import config as cf
 
 def toggle_pil_decompression_bomb_warning(warning_level):
     '''

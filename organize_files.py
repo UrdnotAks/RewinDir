@@ -1,4 +1,3 @@
-from argument_parser import parse_cmd_line_arguments
 import config as cf
 import read_files as rf
 import copy_files as cp
