@@ -14,7 +14,6 @@
 
 ## How to Use
 
-### From Source
 Make sure you have [git](https://git-scm.com/) and [python](https://www.python.org/) installed. Then you can run the following commands to get the scripts on your computer.
 
 ```bash
@@ -25,12 +24,6 @@ python rewindir.py
 ```
 
 If you are a python developer, consider creating a virtual environment before installing the dependent packages.
-
-### From executable
-
-You can [download](https://github.com/UrdnotAks/RewinDir/releases/latest) the latest executable version of RewinDir for Linux. Navigate to the downloaded folder and run the following command.
-
->./rewindir
 
 ## Options
 ```
